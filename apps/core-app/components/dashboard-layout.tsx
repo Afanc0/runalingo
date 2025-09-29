@@ -10,7 +10,7 @@ export const DashboardLayout = ({
 }>) => {
     return (
         <main>
-            <div className="flex items-start justify-start flex-auto min-h-0">
+            <div className="flex items-start justify-start flex-auto min-h-0 h-screen overflow-hidden">
                 <Sidebar
                     navItems={navItems}
                 />
