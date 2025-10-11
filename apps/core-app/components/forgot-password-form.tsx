@@ -3,16 +3,7 @@
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import Link from "next/link";
 import { useState } from "react";
 
 export function ForgotPasswordForm({
@@ -45,60 +36,36 @@ export function ForgotPasswordForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-[10px] p-3", className)} {...props}>
       {success ? (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Check Your Email</CardTitle>
-            <CardDescription>Password reset instructions sent</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              If you registered using your email and password, you will receive
-              a password reset email.
-            </p>
-          </CardContent>
-        </Card>
+        <>
+          <span className="text-2xl text-[#FDFDFD] font-bold text-center">Check Your Email</span>
+          <span className="text-[#FDFDFD] text-center">Password reset instructions sent.</span>
+        </>
       ) : (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Reset Your Password</CardTitle>
-            <CardDescription>
-              Type in your email and we&apos;ll send you a link to reset your
-              password
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleForgotPassword}>
-              <div className="flex flex-col gap-6">
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
+        <>
+          <span className="text-2xl text-[#FDFDFD] font-bold text-center">Forgot password</span>
+          <span className="text-[#FDFDFD] text-center">We will send you instructions on how to reset your password by email.</span>
+          <form onSubmit={handleForgotPassword} className="flex flex-col gap-3">
+              <div className="flex flex-col gap-5 py-5">
                   <Input
-                    id="email"
-                    type="email"
-                    placeholder="m@example.com"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                      id="email"
+                      type="email"
+                      placeholder="Email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="rounded-xl border-2 border-b-4 border-[#9D9D9D] px-5 py-[10p] min-h-12 focus:border-[#0754CF] focus:outline-none focus-visible:outline-none text-[#FDFDFD]"
                   />
-                </div>
-                {error && <p className="text-sm text-red-500">{error}</p>}
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Sending..." : "Send reset email"}
-                </Button>
               </div>
-              <div className="mt-4 text-center text-sm">
-                Already have an account?{" "}
-                <Link
-                  href="/auth/login"
-                  className="underline underline-offset-4"
-                >
-                  Login
-                </Link>
+              {error && <p className="text-sm text-red-500 mb-3">{error}</p>}
+              <div>
+                  <Button className="rounded-xl min-w-full min-h-12 bg-[#0754CF] py-5 font-bold uppercase text-[#091B38] border-2 border-b-4 border-[#073377] hover:bg-[#2967ca]" disabled={isLoading}>
+                    {isLoading ? "Signing in..." : "Sign in"}
+                  </Button>
               </div>
-            </form>
-          </CardContent>
-        </Card>
+          </form>
+        </>
       )}
     </div>
   );

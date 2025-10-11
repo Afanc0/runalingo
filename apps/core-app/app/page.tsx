@@ -1,51 +1,51 @@
-import { DeployButton } from "@/components/deploy-button";
-import { EnvVarWarning } from "@/components/env-var-warning";
-import { AuthButton } from "@/components/auth-button";
-import { Hero } from "@/components/hero";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { ConnectSupabaseSteps } from "@/components/tutorial/connect-supabase-steps";
-import { SignUpUserSteps } from "@/components/tutorial/sign-up-user-steps";
-import { hasEnvVars } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import machupichu from "@/assets/asset_machu_pichu_resized.png"
+
+import yellowblob from "@/assets/Ellipse 2.png"
+import redblob from "@/assets/Ellipse 1.png"
 import Link from "next/link";
 
-export default function Home() {
-  return (
-    <main className="min-h-screen flex flex-col items-center">
-      <div className="flex-1 w-full flex flex-col gap-20 items-center">
-        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-          <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-            <div className="flex gap-5 items-center font-semibold">
-              <Link href={"/"}>Next.js Supabase Starter</Link>
-              <div className="flex items-center gap-2">
-                <DeployButton />
-              </div>
-            </div>
-            {!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
-          </div>
-        </nav>
-        <div className="flex-1 flex flex-col gap-20 max-w-5xl p-5">
-          <Hero />
-          <main className="flex-1 flex flex-col gap-6 px-4">
-            <h2 className="font-medium text-xl mb-4">Next steps</h2>
-            {hasEnvVars ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
-          </main>
-        </div>
+export default function HomePage() {
 
-        <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-          <p>
-            Powered by{" "}
-            <a
-              href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-              target="_blank"
-              className="font-bold hover:underline"
-              rel="noreferrer"
-            >
-              Supabase
-            </a>
-          </p>
-          <ThemeSwitcher />
-        </footer>
-      </div>
-    </main>
-  );
+    return (
+        <main className="min-h-screen flex flex-col items-center">
+            <nav className="w-full flex justify-center h-[75px] px-8">
+                <div className="w-full flex flex-row justify-between items-center p-[10px]">
+                    <div className="h-[50px] w-[180px] flex items-center">
+                        <span>runalingo.</span>
+                    </div>
+                    <div className="flex justify-center items-center flex-row gap-14 p-[10px]">
+                        <span>About</span>
+                        <span>Mission</span>
+                        <span>Contact</span>
+                    </div>
+                    <Link href="/auth/login">
+                        <Button className="px-6 py-[10px] rounded-xl border-2 border-b-4 bg-[#0754CF] border-[#091B38] h-[50px] w-[180px]">
+                            <span className="font-bold text-base uppercase">Login</span>
+                        </Button>
+                    </Link>
+                </div>
+            </nav>
+            <section className="flex-1 flex justify-center items-center flex-col">
+                <Image className="absolute top-24 left-12" src={redblob} alt="red blob"/>
+                <Image className="absolute bottom-24 right-12" src={yellowblob} alt="yellow blob"/>
+                <div className="flex justify-center items-center flex-col gap-7 z-10">
+                    <h1 className="font-bold text-6xl text-center">¡Allinllachu! Learn <br /> Quechua. Love the culture.</h1>
+                    <p className="font-medium text-lg text-center">Discover the beauty of the Quechua language through engaging, interactive lessons designed for all learners.</p>
+                    <Button className="px-6 py-[10px] rounded-xl border-2 border-b-4 bg-[#0754CF] border-[#091B38] h-[50px] w-[180px]">
+                        <span className="font-bold text-base uppercase">Get Started</span>
+                    </Button>
+                </div>
+                <div className="mt-16 z-10">
+                    <Image src={machupichu} alt="Machu Picchu" width={750} />
+                </div>
+            </section>
+            <footer className="p-[10px]">
+                <span className="text-[#B2B2B2] text-sm">
+                    © 2025 runalingo • Quechua made simple, fun, and alive.
+                </span>
+            </footer>
+        </main>
+    )
 }
