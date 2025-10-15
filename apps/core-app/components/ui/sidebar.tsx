@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button"
 import React from "react";
 import Link from "next/link";
 
+import Image from "next/image";
+import logo from "@/assets/In-line Logo.png"
+
 export interface NavItem {
     title: string
     path: string
@@ -29,10 +32,10 @@ function SidebarNavItem({ item }: SidebarNavItemProps) {
                 <Button
                     key={item.title}
                     variant="ghost"
-                    className="border-2 box-border border-solid border-transparent rounded-[12px] w-full h-[3.25rem] justify-start gap-3 text-sidebar-foreground hover:text-sidebar-accent-foreground px-2 py-1"
+                    className="border-2 box-border border-b-4 border-transparent rounded-[12px] w-full h-[3.25rem] justify-start gap-3 px-2 py-1 hover:border-[#0754CF] hover:bg-transparent hover:text-inherit"
                 >
                     <IconComponent className="!h-8 !w-8 mr-5 ml-[6px]" />
-                    <span className="text-base text-[.9375rem] leading-tight select-none tracking-[.8px]">
+                    <span className="text-base leading-tight select-none tracking-[.8px] font-bold">
                         {item.title}
                     </span>
                 </Button>
@@ -44,9 +47,10 @@ function SidebarNavItem({ item }: SidebarNavItemProps) {
 export async function Sidebar({ navItems, className }: SidebarProps) {
     
     return (
-        <div className={cn("flex h-screen min-w-64 flex-col bg-sidebar border-r border-sidebar-border", className)}>
-            <div className="flex h-16 items-center px-6">
-                <h2 className="text-3xl font-semibold text-sidebar-foreground">duolingo</h2>
+        <div className={cn("flex h-screen min-w-64 flex-col bg-sidebar border-r border-[#0754CF] py-5", className)}>
+            <div className="flex h-16 items-center px-6 gap-[10px]">
+                <Image src={logo} alt="Runalingo Logo" width={42} />
+                <h2 className="text-lg font-bold text-sidebar-foreground">runalingo.</h2>
             </div>
             <nav className="flex-1 space-y-1 p-4 flex flex-col gap-1">
                 {navItems.map((item) => (

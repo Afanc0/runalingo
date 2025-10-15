@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
-import { LessonDashboard } from "@/components/lesson-dashboard";
+import { AchievementDashboard } from "@/components/achievement-dashboard";
 
 
 export default async function DashboardPage() {
@@ -14,7 +14,7 @@ export default async function DashboardPage() {
 
     return (
         <div className="h-screen overflow-y-scroll w-full">
-            <LessonDashboard />
+            <AchievementDashboard />
         </div>
     );
 }

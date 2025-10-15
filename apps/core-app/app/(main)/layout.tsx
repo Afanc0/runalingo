@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Montserrat } from 'next/font/google'
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
@@ -8,7 +8,7 @@ import { NavItem } from "@/components/ui/sidebar";
 import { DashboardLayout } from "@/components/dashboard-layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
-import { LearnIcon } from "@/components/learn";
+import { School, Trophy } from "lucide-react";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -16,14 +16,14 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Dashboard",
+  title: "Runalingo - Learn Quechua fast and effective",
   description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  display: "swap",
+const montserrat = Montserrat({
   subsets: ["latin"],
+  variable: "--font-montserrat",
+  display: "swap",
 });
 
 export default async function RootLayout({
@@ -41,7 +41,13 @@ export default async function RootLayout({
     {
         title: 'Learn',
         path: '/learn',
-        icon: LearnIcon,
+        icon: School,
+        show: true
+    },
+    {
+        title: 'Achievements',
+        path: '/achievements',
+        icon: Trophy,
         show: true
     },
     {
@@ -59,7 +65,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
+      <body className={`${montserrat.className} antialiased`}>
         <DashboardLayout navItems={navItems}>
             {children}
         </DashboardLayout>
